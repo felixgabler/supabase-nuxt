@@ -3,6 +3,8 @@
 const supabase = useSupabaseClient()
 const user = await useSupabaseUser()
 
+const { data } = await useUser();
+
 watchEffect(() => {
   // Can be uncommented in next nuxt version when https://github.com/nuxt/nuxt/issues/21841 is fixed
   if (user.value) {
@@ -40,36 +42,17 @@ const email = ref('')
 </script>
 
 <template>
-  <div
-    style="
+  <div style="
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
       gap: 20px;
-    "
-  >
-    <h1>Login</h1>
-    <button @click="signInWithOAuth">
-      Sign In with OAuth (GitHub)
-    </button>
-    <button @click="signIn">
-      Sign In with E-Mail
-    </button>
-    <input
-      v-model="email"
-      type="email"
-    >
-    <template v-if="user">
-      <NuxtLink to="/">
-        Go to home page
-      </NuxtLink>
-      <button
-        @click="signOut"
-      >
-        Sign Out
-      </button>
-    </template>
+    ">
+    User: {{ data + '' }}
+    <NuxtLink to="/unprotected">
+      Go to unprotected page
+    </NuxtLink>
   </div>
 </template>
