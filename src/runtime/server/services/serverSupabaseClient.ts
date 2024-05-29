@@ -29,7 +29,20 @@ export const serverSupabaseClient = async <T>(event: H3Event): Promise<SupabaseC
         ) => cookies.forEach(({ name, value, options }) => setCookie(event, name, value, options)),
       },
       cookieOptions,
-      global: { fetch: $fetch },
+      global: { 
+        fetch: async (req, init) => {
+          try {
+            const [res] = await Promise.all([
+              fetch(req as any, init as any),
+              $fetch.raw(req as any, init as any),
+            ])
+            return res;
+          } catch (error) {
+            console.error('Error fetching request ' + req, error, init);
+            throw error;
+          }
+        }
+      }
     })
   }
 
