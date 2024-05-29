@@ -1,6 +1,6 @@
 import { createServerClient, parseCookieHeader } from '@supabase/ssr'
 import { getHeader, setCookie } from 'h3'
-import fetch from 'cross-fetch'
+import { fetchWithRetry } from '../utils/fetch-retry'
 import { defineNuxtPlugin, useRequestEvent, useRuntimeConfig, useSupabaseSession, useSupabaseUser } from '#imports'
 import type { CookieOptions } from '#app'
 
@@ -26,14 +26,8 @@ export default defineNuxtPlugin({
       },
       cookieOptions,
       global: {
-        fetch: async (req, init) => {
-          try {
-            return await fetch(req as any, init as any)
-          } catch (error) {
-            console.error('Error fetching request ' + req, error, init)
-            throw error
-          }
-        },
+        fetch: fetchWithRetry,
+        ...clientOptions.global,
       },
     })
 

@@ -1,6 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 import { createServerClient, parseCookieHeader, type CookieOptions } from '@supabase/ssr'
 import { getHeader, setCookie, type H3Event } from 'h3'
+import { fetchWithRetry } from '../../utils/fetch-retry'
 import { useRuntimeConfig } from '#imports'
 
 export const serverSupabaseClient = async <T>(event: H3Event): Promise<SupabaseClient<T>> => {
@@ -12,7 +13,7 @@ export const serverSupabaseClient = async <T>(event: H3Event): Promise<SupabaseC
         url,
         key,
         cookieOptions,
-        clientOptions: { auth = {} },
+        clientOptions: { auth = {}, global = {} },
       },
     } = useRuntimeConfig().public
 
@@ -29,16 +30,10 @@ export const serverSupabaseClient = async <T>(event: H3Event): Promise<SupabaseC
         ) => cookies.forEach(({ name, value, options }) => setCookie(event, name, value, options)),
       },
       cookieOptions,
-      global: { 
-        fetch: async (req, init) => {
-          try {
-            return await fetch(req as any, init as any);
-          } catch (error) {
-            console.error('Error fetching request ' + req, error, init);
-            throw error;
-          }
-        }
-      }
+      global: {
+        fetch: fetchWithRetry,
+        ...global,
+      },
     })
   }
 
