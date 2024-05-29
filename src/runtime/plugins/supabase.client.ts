@@ -17,7 +17,6 @@ export default defineNuxtPlugin({
       global: { 
         fetch: async (req, init) => {
           try {
-            await $fetch.raw(req as any, init as any);
             return await fetch(req as any, init as any);
           } catch (error) {
             console.error('Error fetching request ' + req, error, init);
