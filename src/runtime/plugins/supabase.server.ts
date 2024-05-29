@@ -1,5 +1,6 @@
 import { createServerClient, parseCookieHeader } from '@supabase/ssr'
 import { getHeader, setCookie } from 'h3'
+import fetch from 'cross-fetch'
 import { defineNuxtPlugin, useRequestEvent, useRuntimeConfig, useSupabaseSession, useSupabaseUser } from '#imports'
 import type { CookieOptions } from '#app'
 
@@ -24,16 +25,16 @@ export default defineNuxtPlugin({
         ) => cookies.forEach(({ name, value, options }) => setCookie(event, name, value, options)),
       },
       cookieOptions,
-      global: { 
+      global: {
         fetch: async (req, init) => {
           try {
-            return await fetch(req as any, init as any);
+            return await fetch(req as any, init as any)
           } catch (error) {
-            console.error('Error fetching request ' + req, error, init);
-            throw error;
+            console.error('Error fetching request ' + req, error, init)
+            throw error
           }
-        }
-      }
+        },
+      },
     })
 
     // Initialize user and session states

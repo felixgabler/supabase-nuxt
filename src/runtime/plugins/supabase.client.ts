@@ -1,5 +1,6 @@
 import { createBrowserClient } from '@supabase/ssr'
 import type { Session } from '@supabase/supabase-js'
+import fetch from 'cross-fetch'
 import { useSupabaseSession } from '../composables/useSupabaseSession'
 import { useSupabaseUser } from '../composables/useSupabaseUser'
 import { defineNuxtPlugin, useRuntimeConfig } from '#imports'
@@ -14,16 +15,16 @@ export default defineNuxtPlugin({
       ...clientOptions,
       cookieOptions,
       isSingleton: true,
-      global: { 
+      global: {
         fetch: async (req, init) => {
           try {
-            return await fetch(req as any, init as any);
+            return await fetch(req as any, init as any)
           } catch (error) {
-            console.error('Error fetching request ' + req, error, init);
-            throw error;
+            console.error('Error fetching request ' + req, error, init)
+            throw error
           }
-        }
-      }
+        },
+      },
     })
 
     const currentSession = useSupabaseSession()
