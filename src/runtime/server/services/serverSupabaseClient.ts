@@ -29,6 +29,7 @@ export const serverSupabaseClient = async <T>(event: H3Event): Promise<SupabaseC
         ) => cookies.forEach(({ name, value, options }) => setCookie(event, name, value, options)),
       },
       cookieOptions,
+      global: { fetch: $fetch },
     })
   }
 

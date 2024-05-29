@@ -14,6 +14,7 @@ export default defineNuxtPlugin({
       ...clientOptions,
       cookieOptions,
       isSingleton: true,
+      global: { fetch: $fetch }
     })
 
     const currentSession = useSupabaseSession()

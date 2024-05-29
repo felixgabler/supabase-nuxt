@@ -24,6 +24,7 @@ export default defineNuxtPlugin({
         ) => cookies.forEach(({ name, value, options }) => setCookie(event, name, value, options)),
       },
       cookieOptions,
+      global: { fetch: $fetch },
     })
 
     // Initialize user and session states
