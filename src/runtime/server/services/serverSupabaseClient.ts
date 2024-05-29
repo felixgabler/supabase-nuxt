@@ -2,7 +2,6 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import { createServerClient, parseCookieHeader, type CookieOptions } from '@supabase/ssr'
 import { getHeader, setCookie, type H3Event } from 'h3'
 import { useRuntimeConfig } from '#imports'
-import fetch from 'cross-fetch'
 
 export const serverSupabaseClient = async <T>(event: H3Event): Promise<SupabaseClient<T>> => {
   // No need to recreate client if exists in request context
