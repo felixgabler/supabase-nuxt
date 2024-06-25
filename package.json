@@ -28,7 +28,7 @@
   "dependencies": {
     "@nuxt/kit": "^3.12.2",
     "@supabase/ssr": "^0.4.0",
-    "@supabase/supabase-js": "^2.43.5",
+    "@supabase/supabase-js": "^2.43.6",
     "defu": "^6.1.4",
     "pathe": "^1.1.2"
   },
