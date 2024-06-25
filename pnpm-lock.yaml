@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       '@nuxt/kit':
-        specifier: ^3.11.2
+        specifier: ^3.12.2
         version: 3.12.2(magicast@0.3.4)(rollup@4.18.0)
       '@supabase/ssr':
         specifier: ^0.4.0
@@ -25,28 +25,28 @@ importers:
         version: 1.1.2
     devDependencies:
       '@nuxt/eslint':
-        specifier: ^0.3.12
+        specifier: ^0.3.13
         version: 0.3.13(eslint@9.5.0)(magicast@0.3.4)(rollup@4.18.0)(typescript@5.5.2)(vite@5.3.1(@types/node@20.14.8)(terser@5.31.1))
       '@nuxt/module-builder':
         specifier: ^0.6.0
         version: 0.6.0(@nuxt/kit@3.12.2(magicast@0.3.4)(rollup@4.18.0))(nuxi@3.12.0)(typescript@5.5.2)
       '@nuxt/schema':
-        specifier: ^3.11.2
+        specifier: ^3.12.2
         version: 3.12.2(rollup@4.18.0)
       '@release-it/conventional-changelog':
         specifier: ^8.0.1
         version: 8.0.1(release-it@17.4.0(typescript@5.5.2))
       '@types/node':
-        specifier: ^20.12.12
+        specifier: ^20.14.8
         version: 20.14.8
       eslint:
-        specifier: ^9.4.0
+        specifier: ^9.5.0
         version: 9.5.0
       nuxt:
-        specifier: ^3.11.2
+        specifier: ^3.12.2
         version: 3.12.2(@opentelemetry/api@1.9.0)(@parcel/watcher@2.4.1)(@types/node@20.14.8)(encoding@0.1.13)(eslint@9.5.0)(ioredis@5.4.1)(magicast@0.3.4)(meow@12.1.1)(optionator@0.9.4)(rollup@4.18.0)(terser@5.31.1)(typescript@5.5.2)(vite@5.3.1(@types/node@20.14.8)(terser@5.31.1))
       prettier:
-        specifier: ^3.2.5
+        specifier: ^3.3.2
         version: 3.3.2
       release-it:
         specifier: ^17.2.1
