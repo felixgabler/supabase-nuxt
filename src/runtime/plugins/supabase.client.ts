@@ -33,8 +33,11 @@ export default defineNuxtPlugin({
     currentUser.value = session?.user ?? null
 
     // Updates the session and user states through auth events
-    client.auth.onAuthStateChange((_, session: Session | null) => {
+    client.auth.onAuthStateChange(async (_, session: Session | null) => {
       if (JSON.stringify(currentSession.value) !== JSON.stringify(session)) {
+        // Make sure token is refreshed (keep for now, supabase-js should do it down the line)
+        await client.realtime.setAuth()
+
         currentSession.value = session
         currentUser.value = session?.user ?? null
       }
